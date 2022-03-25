@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float force = 15f;
     bool canMove;
 
+    public float Velocity;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Velocity = Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y);
         Vector3 mousePos = new Vector3(Input.mousePosition.x - Screen.width / 2, Input.mousePosition.y - Screen.height / 2, 0);
-        Debug.Log(Input.mousePosition);
         if (canMove)
         {
             if (Input.GetKeyDown(KeyCode.G))
@@ -27,6 +28,14 @@ public class Movement : MonoBehaviour
                 rb.AddForce(mousePos * force, ForceMode2D.Impulse);
                 mFrames = 30;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy" && Velocity >= 10)
+        {
+            Destroy(col.gameObject);
         }
     }
 
