@@ -7,12 +7,13 @@ public class Movement : MonoBehaviour
     public float mFrames = 0f;
     public float force = 15f;
     bool canMove;
+    public GameObject explosion;
 
     public float Velocity;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -35,6 +36,7 @@ public class Movement : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy" && Velocity >= 10)
         {
+            Instantiate(explosion, new Vector3(col.gameObject.transform.position.x, col.gameObject.transform.position.y, -1), transform.rotation);
             Destroy(col.gameObject);
         }
     }

@@ -146,3 +146,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFrames: 0
   force: 15
+  explosion: {fileID: 7227003805488873859, guid: ea7884e83b0ef8c4db643a7f52127071, type: 3}
+  Velocity: 0
