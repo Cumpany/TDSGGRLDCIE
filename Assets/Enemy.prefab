@@ -101,7 +101,7 @@ MonoBehaviour:
   hasTarget: 0
   target: {fileID: 4576393672570250466, guid: 93cf1f0d40b469847b2035886b8e1eca, type: 3}
   enemy: {fileID: 3939829826755947518}
-  speed: 1
+  speed: 15
 --- !u!50 &3520792251614560305
 Rigidbody2D:
   serializedVersion: 4
