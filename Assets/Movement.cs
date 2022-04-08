@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,10 @@ public class Movement : MonoBehaviour
         {
             Instantiate(explosion, new Vector3(col.gameObject.transform.position.x, col.gameObject.transform.position.y, -1), transform.rotation);
             Destroy(col.gameObject);
+        }
+        if (col.gameObject.tag == "Enemy" && Velocity < 10)
+        {
+            Application.Quit(69);
         }
     }
 
