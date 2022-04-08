@@ -24154,7 +24154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5898957565291951021, guid: 93cf1f0d40b469847b2035886b8e1eca, type: 3}
       propertyPath: m_LinearDrag
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7415692166515357334, guid: 93cf1f0d40b469847b2035886b8e1eca, type: 3}
       propertyPath: force
