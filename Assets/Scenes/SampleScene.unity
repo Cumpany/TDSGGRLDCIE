@@ -940,9 +940,9 @@ MonoBehaviour:
   vignetteEdgeRound: 8
   noiseSize: 75
   noiseAmount: 0.05
-  redOffset: {x: 0, y: -0.005}
+  redOffset: {x: -0.005, y: -0.005}
   blueOffset: {x: 0, y: 0}
-  greenOffset: {x: 0, y: 0.005}
+  greenOffset: {x: 0.005, y: 0.005}
 --- !u!1001 &525215506
 PrefabInstance:
   m_ObjectHideFlags: 0
