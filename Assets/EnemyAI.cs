@@ -50,6 +50,7 @@ public class EnemyAI : MonoBehaviour
 
     private void follow(Transform target, Transform enemy)
     {
+        if (!PlayerDeath.isDead)
         rb.AddForce((target.transform.position - enemy.transform.position).normalized * speed);
     }
 }

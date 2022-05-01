@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float mFrames = 0f;
+    public static float mFrames = 0f;
     public float force = 15f;
     bool canMove;
     public GameObject explosion;
 
     public float Velocity;
-    Rigidbody2D rb;
+    public static Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {   
@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
         }
         if (col.gameObject.tag == "Enemy" && Velocity < 10)
         {
-            Application.Quit(69);
+            PlayerDeath.Die();
         }
     }
 
