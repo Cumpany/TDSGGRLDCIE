@@ -23,7 +23,7 @@ public class PlayerDeath : MonoBehaviour
             matt.SetFloat("_Float", 1f - deathTimer);
             deathTimer += 0.02f;
         }
-        if (deathTimer <= 0)
+        if (deathTimer >= 1)
         {
             matt.SetFloat("_Float", 1f);
             Application.Quit(69);

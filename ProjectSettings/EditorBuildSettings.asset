@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3 trea.unity
     guid: 359d70c4c8b6d804abe3d59366c2debf
+  - enabled: 1
+    path: Assets/Scenes/fura.unity
+    guid: ad1030c667b76ab4f870f240573c4cef
   m_configObjects: {}
