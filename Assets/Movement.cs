@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     public static Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
-    {   
+    {
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G))
             {
                 rb.AddForce(mousePos * force, ForceMode2D.Impulse);
-                mFrames = 30;
+                mFrames = 30 - (InvScript.Inventory[1] * 2);
             }
         }
     }
@@ -42,7 +42,13 @@ public class Movement : MonoBehaviour
         }
         if (col.gameObject.tag == "Enemy" && Velocity < 10)
         {
-            PlayerDeath.Die();
+            if (InvScript.Inventory[0] > 0)
+            {
+                Debug.Log("Ded");
+                PlayerDeath.Die();
+            }
+            else
+                InvScript.Inventory[0]--;
         }
     }
 
@@ -52,7 +58,7 @@ public class Movement : MonoBehaviour
         {
             canMove = true;
         }
-        else 
+        else
         {
             mFrames--;
             canMove = false;
