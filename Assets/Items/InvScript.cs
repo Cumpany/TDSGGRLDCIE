@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class InvScript : MonoBehaviour
 {
-    public ItemScript.ItemList Inventory = ItemScript.ItemList.Empty;
-    public int InvCount = 0;
+    public static int[] Inventory = new int[2];
     private ItemScript.ItemList pItem = ItemScript.ItemList.Empty;
     private GameObject pItemObject;
     void OnTriggerEnter2D(Collider2D col)
@@ -17,6 +16,12 @@ public class InvScript : MonoBehaviour
             pItem = (ItemScript.ItemList)col.transform.position.z;
             pItemObject = col.gameObject;
             Debug.Log(pItem);
+            if (AddItem(pItem))
+            {
+                Destroy(pItemObject);
+                pItem = ItemScript.ItemList.Empty;
+                pItemObject = null;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D col)
@@ -27,53 +32,26 @@ public class InvScript : MonoBehaviour
             pItemObject = null;
         }
     }
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.E) && AddItem(pItem))
-        {
-            Destroy(pItemObject);
-            pItem = ItemScript.ItemList.Empty;
-            pItemObject = null;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            DropInv();
-        }
-    }
-    void PickupItem(Collider2D col)
-    {
-        if (AddItem((ItemScript.ItemList)col.transform.GetChild(0).position.z))
-        Destroy(col);
+        Inventory = new int[2];
     }
     bool AddItem(ItemScript.ItemList i)
     {
-        if (Inventory == i)
+        switch (i)
         {
-            InvCount++;
-            Debug.Log("Added " + i.ToString() + " to inventory (" + InvCount + ")");
-            return true;
-        }
-        if (Inventory == i || Inventory == ItemScript.ItemList.Empty)
-        {
-            Inventory = i;
-            InvCount++;
-            Debug.Log("Added " + i.ToString() + " to inventory (" + InvCount + ")");
-            return true;
-        }
-        Debug.Log("Could not add " + i.ToString() + " to inventory, it contains " + Inventory.ToString() + " (" + InvCount + ")");
-        return false;
-    }
-    void DropInv()
-    {
-        if (InvCount > 0)
-        {
-            Vector3 pos = new Vector3(transform.position.x + Random.Range(-0.5f, 0.5f), transform.position.y + Random.Range(-0.5f, 0.5f), 0);
-            GameObject droppedItem = Instantiate(Resources.Load<GameObject>("DroppedItem"), pos, Quaternion.identity);
-            droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Inventory.ToString());
-            droppedItem.transform.position = new Vector3(droppedItem.transform.position.x, droppedItem.transform.position.y, (float)Inventory);
-            InvCount--;
-            if (InvCount == 0)
-            Inventory = ItemScript.ItemList.Empty;
+            case ItemScript.ItemList.Circle:
+                Debug.Log("Circle " + Inventory.Length);
+                Inventory[0]++;
+                Camera.main.transform.GetChild(0).Find("Circle").GetChild(0).GetComponent<Text>().text = Inventory[0].ToString();
+                return true;
+            case ItemScript.ItemList.Hexagon:
+                Debug.Log("Hexagon " + Inventory.Length);
+                Inventory[1]++;
+                Camera.main.transform.GetChild(0).Find("Hexagon").GetChild(0).GetComponent<Text>().text = Inventory[1].ToString();
+                return true;
+            default:
+                return false;
         }
     }
 }
