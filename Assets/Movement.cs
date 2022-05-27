@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
         }
         if (col.gameObject.tag == "Enemy" && Velocity < 10)
         {
-            if (InvScript.Inventory[0] > 0)
+            if (InvScript.Inventory[0] >= 0)
             {
                 Debug.Log("Ded");
                 PlayerDeath.Die();
